@@ -47,7 +47,6 @@ end
 
 group :test do
   gem 'faker', '2.10.0'
-  gem 'selenium-webdriver', '3.142.7'
   gem 'database_cleaner', '1.7.0'
 end
 
