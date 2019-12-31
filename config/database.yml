@@ -23,13 +23,21 @@ default: &default
 
 development:
   <<: *default
+<<<<<<< HEAD
   database: unsplash_consumer_development
+=======
+  database: project_template_development
+>>>>>>> 693c7356ef4e662d4d96a913bdc615237fb6f6af
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
+<<<<<<< HEAD
   #username: unsplash_consumer
+=======
+  #username: project_template
+>>>>>>> 693c7356ef4e662d4d96a913bdc615237fb6f6af
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +65,11 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+<<<<<<< HEAD
   database: unsplash_consumer_test
+=======
+  database: project_template_test
+>>>>>>> 693c7356ef4e662d4d96a913bdc615237fb6f6af
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +92,12 @@ test:
 #
 production:
   <<: *default
+<<<<<<< HEAD
   database: unsplash_consumer_production
   username: unsplash_consumer
   password: <%= ENV['UNSPLASH_CONSUMER_DATABASE_PASSWORD'] %>
+=======
+  database: project_template_production
+  username: project_template
+  password: <%= ENV['PROJECT_TEMPLATE_DATABASE_PASSWORD'] %>
+>>>>>>> 693c7356ef4e662d4d96a913bdc615237fb6f6af
