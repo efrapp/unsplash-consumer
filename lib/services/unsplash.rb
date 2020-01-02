@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Unsplash
+module Unsplash
   include HTTParty
 
   base_uri 'api.unsplash.com'
