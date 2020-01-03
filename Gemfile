@@ -54,6 +54,8 @@ end
 group :test do
   gem 'database_cleaner', '1.7.0'
   gem 'faker', '2.10.0'
+  gem 'vcr', '5.0.0'
+  gem 'webmock', '3.7.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
