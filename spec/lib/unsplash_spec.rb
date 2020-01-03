@@ -28,7 +28,7 @@ RSpec.describe Unsplash do
         expect(filtered_photos.code).to eq(200)
       end
       it 'has photos' do
-        expect(filtered_photos.body.size).to be > 0
+        expect(JSON.parse(filtered_photos.body)['total']).to be > 0
       end
     end
 
@@ -37,7 +37,7 @@ RSpec.describe Unsplash do
         expect(collection_photos.code).to eq(200)
       end
       it 'has photos' do
-        expect(collection_photos.body.size).to be > 0
+        expect(JSON.parse(collection_photos.body).size).to be > 0
       end
     end
   end
