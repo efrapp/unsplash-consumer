@@ -57,4 +57,18 @@ RSpec.describe Unsplash do
       expect(JSON.parse(collection.body)['title']).to eq('favorites')
     end
   end
+
+  describe '.add_photo_to_favorites' do
+    let(:photo) do
+      VCR.use_cassette('unsplash/add_photo') { Unsplash.add_photo_to_favorites('9319453', 'bL4TJNwtLMw') }
+    end
+
+    it 'returns status 201' do
+      expect(photo.code).to eq(201)
+    end
+
+    it 'has photo key' do
+      expect(JSON.parse(photo.body)).to have_key('photo')
+    end
+  end
 end
