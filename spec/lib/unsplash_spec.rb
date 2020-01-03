@@ -11,6 +11,9 @@ RSpec.describe Unsplash do
     let(:filtered_photos) do
       VCR.use_cassette('unsplash/filtered_photos') { Unsplash.photos(query: 'dogs') }
     end
+    let(:collection_photos) do
+      VCR.use_cassette('unsplash/collection_photos') { Unsplash.photos(collection_id: '9319453') }
+    end
 
     context 'without search query' do
       it 'returns status 200' do
@@ -26,6 +29,15 @@ RSpec.describe Unsplash do
       end
       it 'has photos' do
         expect(filtered_photos.body.size).to be > 0
+      end
+    end
+
+    context 'from collection' do
+      it 'returns status 200' do
+        expect(collection_photos.code).to eq(200)
+      end
+      it 'has photos' do
+        expect(collection_photos.body.size).to be > 0
       end
     end
   end

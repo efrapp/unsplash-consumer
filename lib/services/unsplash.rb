@@ -9,6 +9,7 @@ module Unsplash
 
   def self.photos(options = {})
     return get('/search/photos/', query: { query: options[:query] }) if options.include?(:query)
+    return get("/collections/#{options[:collection_id]}/photos") if options.include?(:collection_id)
 
     get('/photos')
   end
