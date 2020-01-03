@@ -29,4 +29,18 @@ RSpec.describe Unsplash do
       end
     end
   end
+
+  describe '.create_collection' do
+    let(:collection) do
+      VCR.use_cassette('unsplash/new_collection') { Unsplash.create_collection('test collection') }
+    end
+
+    it 'returns status 201' do
+      expect(collection.code).to eq(201)
+    end
+
+    it 'has an id key' do
+      expect(JSON.parse(collection.body)).to have_key('id')
+    end
+  end
 end
