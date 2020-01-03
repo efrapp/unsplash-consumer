@@ -7,10 +7,10 @@ module Unsplash
   headers 'Accept-Version' => 'v1',
           'Authorization' => "Bearer #{ENV['UNSPLASH_ACCESS_TOKEN']}"
 
-  def self.photos(query = '')
-    return get('/photos') if query.empty?
+  def self.photos(options = {})
+    return get('/search/photos/', query: { query: options[:query] }) if options.include?(:query)
 
-    get('/search/photos/', query: { query: query })
+    get('/photos')
   end
 
   def self.create_collection(name = 'favorites')

@@ -9,7 +9,7 @@ RSpec.describe Unsplash do
       VCR.use_cassette('unsplash/photos') { Unsplash.photos }
     end
     let(:filtered_photos) do
-      VCR.use_cassette('unsplash/filtered_photos') { Unsplash.photos('dogs') }
+      VCR.use_cassette('unsplash/filtered_photos') { Unsplash.photos(query: 'dogs') }
     end
 
     context 'without search query' do
