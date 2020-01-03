@@ -16,4 +16,8 @@ module Unsplash
   def self.create_collection(name = 'favorites')
     post('/collections', body: { title: name })
   end
+
+  def self.get_collection(id)
+    get("/collections/#{id}")
+  end
 end

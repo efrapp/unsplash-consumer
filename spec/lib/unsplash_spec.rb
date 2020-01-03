@@ -43,4 +43,18 @@ RSpec.describe Unsplash do
       expect(JSON.parse(collection.body)).to have_key('id')
     end
   end
+
+  describe '.get_collection' do
+    let(:collection) do
+      VCR.use_cassette('unsplash/get_collection') { Unsplash.get_collection('9319453') }
+    end
+
+    it 'returns status 200' do
+      expect(collection.code).to eq(200)
+    end
+
+    it 'has name title favorite' do
+      expect(JSON.parse(collection.body)['title']).to eq('favorites')
+    end
+  end
 end
