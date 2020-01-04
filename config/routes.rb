@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   root 'photos#index'
   
   get 'collections/favorite'
-  resources :photos
+  get 'photos/:unsplash_id/add_to_favorites', to: 'photos#add_to_favorites', as: 'photos_add_to_favorites'
+
+  resources :photos, only: :index
 end
