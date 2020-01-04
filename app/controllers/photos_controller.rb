@@ -9,7 +9,13 @@ class PhotosController < ApplicationController
   end
 
   def add_to_favorites
-    Unsplash.add_photo_to_favorites(@favorites_collection.collection_id, params['unsplash_id'])
+    response = Unsplash.add_photo_to_favorites(@favorites_collection.collection_id, params['unsplash_id'])
+
+    if response.code == 201
+      flash[:success] = 'Photo added successfully'
+    else
+      flash[:danger] = response.message
+    end
 
     redirect_to photos_path
   end
