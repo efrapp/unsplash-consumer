@@ -7,6 +7,9 @@ module Unsplash
   headers 'Accept-Version' => 'v1',
           'Authorization' => "Bearer #{ENV['UNSPLASH_ACCESS_TOKEN']}"
 
+  DEFAULT_PAGE = '1'
+  DEFAULT_PER_PAGE = '10'
+
   Response = Struct.new(:body, :code, :message, :headers, keyword_init: true) do
     def page_control(direction = { page: 'next' })
       page_link_str = headers['link']
@@ -20,14 +23,18 @@ module Unsplash
     end
   end
 
-  def self.photos(options = { page: 1, per_page: 10 })
-    pagination = { page: options[:page], per_page: options[:per_page] }
+  def self.photos(options = {})
+    pagination = {}
+    pagination[:page] = options[:page] || DEFAULT_PAGE
+    pagination[:per_page] = options[:per_page] || DEFAULT_PER_PAGE
 
     if options.include?(:query)
       res = get('/search/photos/', query: { query: options[:query] }.merge(pagination))
       return Response.new(body: res.parsed_response, code: res.code, message: res.message, headers: res.headers)
+    elsif options.include?(:collection_id)
+      res = get("/collections/#{options[:collection_id]}/photos", query: pagination)
+      return Response.new(body: res.parsed_response, code: res.code, message: res.message, headers: res.headers)
     end
-    return get("/collections/#{options[:collection_id]}/photos") if options.include?(:collection_id)
 
     res = get('/photos', query: pagination)
     Response.new(body: res.parsed_response, code: res.code, message: res.message, headers: res.headers)

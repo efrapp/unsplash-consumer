@@ -37,7 +37,7 @@ RSpec.describe Unsplash do
         expect(collection_photos.code).to eq(200)
       end
       it 'has photos' do
-        expect(JSON.parse(collection_photos.body).size).to be > 0
+        expect(collection_photos.body.size).to be > 0
       end
     end
   end
