@@ -36,7 +36,9 @@ module Unsplash
             get('/photos', query: pagination)
           end
 
-    Response.new(body: res.parsed_response, code: res.code, message: res.message, headers: res.headers)
+    content = normalize_body res.parsed_response
+
+    Response.new(body: content, code: res.code, message: res.message, headers: res.headers)
   end
 
   def self.create_collection(name = 'favorites')
@@ -50,4 +52,12 @@ module Unsplash
   def self.add_photo_to_favorites(collection_id, photo_id)
     post("/collections/#{collection_id}/add", body: { photo_id: photo_id })
   end
+
+  def self.normalize_body(body)
+    return body['results'] if body.include?('results')
+
+    body
+  end
+
+  private_class_method :normalize_body
 end
