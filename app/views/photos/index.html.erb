@@ -1,0 +1,21 @@
+<%= render partial: 'layouts/navbar' %>
+
+<% @photos.each do |photo| %>
+  <p>
+    <%= link_to(
+          image_tag(photo['urls']['thumb'], class: 'photo'),
+          photos_add_to_favorites_path(photo['id']),
+          class: 'photo-link'
+        )
+    %>
+  </p>
+<% end %>
+
+<div>
+  <p>
+    <%= link_to 'first', photos_path(page: @response.page_control(page: 'first')) %> |
+    <%= link_to 'prev', photos_path(page: @response.page_control(page: 'prev')) %> |
+    <%= link_to 'next', photos_path(page: @response.page_control(page: 'next')) %> |
+    <%= link_to 'last', photos_path(page: @response.page_control(page: 'last')) %>
+  </p>
+</div>

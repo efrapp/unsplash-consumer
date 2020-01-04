@@ -1,0 +1,7 @@
+<%= render partial: 'layouts/navbar' %>
+
+<h1><%= @collection['title'] %></h1>
+
+<% @photos.each do |photo| %>
+  <p><%= image_tag photo['urls']['thumb'], class: 'photo' %></p>
+<% end %>
