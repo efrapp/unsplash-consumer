@@ -21,10 +21,15 @@ module Unsplash
   end
 
   def self.photos(options = { page: 1, per_page: 10 })
-    return get('/search/photos/', query: { query: options[:query] }) if options.include?(:query)
+    pagination = { page: options[:page], per_page: options[:per_page] }
+
+    if options.include?(:query)
+      res = get('/search/photos/', query: { query: options[:query] }.merge(pagination))
+      return Response.new(body: res.parsed_response, code: res.code, message: res.message, headers: res.headers)
+    end
     return get("/collections/#{options[:collection_id]}/photos") if options.include?(:collection_id)
 
-    res = get('/photos', query: { page: options[:page], per_page: options[:per_page] })
+    res = get('/photos', query: pagination)
     Response.new(body: res.parsed_response, code: res.code, message: res.message, headers: res.headers)
   end
 
