@@ -1,0 +1,12 @@
+<% @photos.each do |photo| %>
+  <p><%= image_tag photo['urls']['thumb'] %></p>
+<% end %>
+
+<div>
+  <p>
+    <%= link_to 'first', photos_path(page: @response.page_control(page: 'first')) %> |
+    <%= link_to 'prev', photos_path(page: @response.page_control(page: 'prev')) %> |
+    <%= link_to 'next', photos_path(page: @response.page_control(page: 'next')) %> |
+    <%= link_to 'last', photos_path(page: @response.page_control(page: 'last')) %>
+  </p>
+</div>
