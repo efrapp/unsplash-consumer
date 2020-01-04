@@ -1,7 +1,14 @@
 <%= render partial: 'layouts/navbar' %>
 
 <% @photos.each do |photo| %>
-  <p><%= link_to(image_tag(photo['urls']['thumb'], class: 'photo'), photos_add_to_favorites_path(photo['id'])) %></p>
+  <p>
+    <%= link_to(
+          image_tag(photo['urls']['thumb'], class: 'photo'),
+          photos_add_to_favorites_path(photo['id']),
+          class: 'photo-link'
+        )
+    %>
+  </p>
 <% end %>
 
 <div>
