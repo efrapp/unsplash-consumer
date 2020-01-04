@@ -1,24 +1,9 @@
-# README
+# Unsplash Service Consumer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app integrates the popular service to handle photos [Unsplash](https://unsplash.com/)
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Usage
+- Clone the repository in a folder of your preference running the command: `git clone git@github.com:efrapp/unsplash-consumer.git`
+- Download the `.env` file using this [link](https://storage.cloud.google.com/unsplash-consumer-bucket/.env) and place it in the project's root
+- Start the server with `rails s`
